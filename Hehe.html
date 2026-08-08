@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise Troll!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Nút bấm khởi chạy hiệu ứng */
+        #start-btn {
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #ff4757;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+            transition: transform 0.2s, background-color 0.2s;
+            z-index: 10;
+        }
+
+        #start-btn:hover {
+            background-color: #ff6b81;
+            transform: scale(1.05);
+        }
+
+        #start-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Container chứa ảnh */
+        .image-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Cấu hình ảnh ban đầu ẩn đi */
+        #troll-image {
+            max-width: 90vw;
+            max-height: 80vh;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0; /* Âm / Ẩn hoàn toàn */
+            transition: opacity 3s ease-in-out, transform 3s ease-in-out; /* Hiện lên từ từ trong 3 giây */
+            transform: scale(0.8);
+        }
+
+        /* Class khi kích hoạt hiện lên */
+        #troll-image.show {
+            opacity: 1; /* Hiện rõ hoàn toàn */
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+
+    <button id="start-btn" onclick="startTroll()">Bấm vào đây để nhận quà! 🎁</button>
+
+    <div class="image-container">
+        <!-- Đặt tên file ảnh của bạn vào src bên dưới, ví dụ: 1000013466.jpg -->
+        <img id="troll-image" src="Hthuong.jpg" alt="1000013466.jpg">
+    </div>
+
+    <!-- Âm thanh troll (sử dụng hiệu ứng cười troll meme) -->
+    <audio id="troll-sound" src="https://www.soundjay.com/human/sounds/laughter-3.mp3" preload="auto"></audio>
+
+    <script>
+        function startTroll() {
+            // 1. Ẩn nút bấm
+            const btn = document.getElementById('start-btn');
+            btn.style.display = 'none';
+
+            // 2. Phát âm thanh troll
+            const sound = document.getElementById('troll-sound');
+            sound.currentTime = 0;
+            sound.play().catch(error => {
+                console.log("Phát âm thanh thất bại:", error);
+            });
+
+            // 3. Cho ảnh hiện lên từ từ
+            const img = document.getElementById('troll-image');
+            img.classList.add('show');
+        }
+    </script>
+</body>
+</html>
